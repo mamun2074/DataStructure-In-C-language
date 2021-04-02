@@ -56,13 +56,30 @@ int Min(struct array arr)
     return min;
 }
 
+// Sum all item on array
+int Sum(struct array arr)
+{
+    int sum=0, i;
+    for(i=0; i<arr.length; i++)
+    {
+        sum+=arr.arr[i];
+    }
+    return sum;
+}
+
+int Avg(struct array arr)
+{
+    return (Sum(arr) / arr.length);
+}
+
+
 int main()
 {
     struct array arr = {{5, 8, 10, 12, 15, 20, 25, 27, 28, 35, 40}, 12, 11};
 
     Set(arr.arr, arr.length, 1, 200);
 
-    printf("Value is : %d", Min(arr));
+    printf("Value is : %d", Avg(arr));
 
     return 0;
 }
