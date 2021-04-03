@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 
 // Array structer
@@ -7,6 +8,17 @@ struct array
     int size;
     int length;
 };
+
+void display(struct array arr)
+{
+    int i;
+    printf("Show all array items \n");
+    for (i = 0; i < arr.length; i++)
+    {
+        printf("%d ", arr.arr[i]);
+    }
+    printf(" \n");
+}
 
 // Finding value by index
 int Get(struct array arr, int index)
@@ -59,27 +71,71 @@ int Min(struct array arr)
 // Sum all item on array
 int Sum(struct array arr)
 {
-    int sum=0, i;
-    for(i=0; i<arr.length; i++)
+    int sum = 0, i;
+    for (i = 0; i < arr.length; i++)
     {
-        sum+=arr.arr[i];
+        sum += arr.arr[i];
     }
     return sum;
 }
 
+// Sum array recursion
+int SumR(struct array arr, int n)
+{
+    if (n < 0)
+    {
+        return 0;
+    }
+    else
+    {
+        return SumR(arr, n - 1) + arr.arr[n];
+    }
+}
+
+// Avarage on array
 int Avg(struct array arr)
 {
     return (Sum(arr) / arr.length);
 }
 
+void Reverse(struct array *arr)
+{
+    int *helpingArray, i, j;
+    helpingArray = (int *)malloc(arr->length * sizeof(int));
+    for (i = arr->length - 1, j = 0; i >= 0; i--, j++)
+    {
+        helpingArray[j] = arr->arr[i];
+    }
+    for (i = 0; i < arr->length; i++)
+    {
+        arr->arr[i] = helpingArray[i];
+    }
+}
+
+void Flip(int *a, int *b)
+{
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void Reverse1(struct array *arr)
+{
+    int i, j, temp, *a, *b;
+    for (i = 0, j = arr->length - 1; i < j; i++, j--)
+    {
+        Flip(&arr->arr[i], &arr->arr[j]);
+    }
+}
 
 int main()
 {
     struct array arr = {{5, 8, 10, 12, 15, 20, 25, 27, 28, 35, 40}, 12, 11};
 
-    Set(arr.arr, arr.length, 1, 200);
+    Reverse1(&arr);
 
-    printf("Value is : %d", Avg(arr));
+    display(arr);
 
     return 0;
 }
