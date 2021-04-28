@@ -7,7 +7,7 @@ struct matrix
     int n;
 };
 
-void setLowerTriangularRowMajon(struct matrix *m, int i, int j, int x)
+void setLowerTriangularRowMajor(struct matrix *m, int i, int j, int x)
 {
     if (i >= j)
     {
@@ -15,7 +15,7 @@ void setLowerTriangularRowMajon(struct matrix *m, int i, int j, int x)
     }
 }
 
-int getLowerTriangularRowMajon(struct matrix lower, int i, int j)
+int getLowerTriangularRowMajor(struct matrix lower, int i, int j)
 {
     if (i >= j)
     {
@@ -47,6 +47,34 @@ void display(struct matrix a)
     }
 }
 
+void setColomnMajorLowerTriangularMatrix(struct matrix *m, int i, int j, int x)
+{
+    if (i >= j) // lower tringular matrx
+    {
+        /* Rule of colomn major lower Matrix
+        /* [n+n-1+n-2+ ........n-(j-2)] + (i-j)
+        /* n(j-1)-[1+2+3+.....j-2] + (i-j)
+        /* n(j-1)-[(j-2)] + (i-j)
+        */
+        int index = ((m->n * (j - 1)) - ((j - 2) * (j - 1) / 2)) + (i - j);
+        m->A[index] = x;
+    }
+}
+
+int getColomnMajonLowerTriangularMatrix(struct matrix m, int i, int j)
+{
+    if (i >= j) // lower tringular matrx
+    {
+        /* Rule of colomn major lower Matrix
+        /* [n+n-1+n-2+ ........n-(j-2)] + (i-j)
+        /* n(j-1)-[1+2+3+.....j-2] + (i-j)
+        /* n(j-1)-[(j-2)] + (i-j)
+        */
+        int index = ((m.n * (j - 1)) - ((j - 2) * (j - 1) / 2)) + (i - j);
+        return m.A[index];
+    }
+}
+
 int main()
 {
 
@@ -62,7 +90,8 @@ int main()
         for (j = 1; j <= m.n; j++)
         {
             scanf("%d", &x);
-            setLowerTriangularRowMajon(&m, i, j, x);
+            // setLowerTriangularRowMajor(&m, i, j, x);
+             setColomnMajorLowerTriangularMatrix(&m, i, j, x);
         }
     }
 
