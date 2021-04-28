@@ -7,12 +7,22 @@ struct triangular
     int n;
 };
 
-void setRowMajonUpperTriangular(struct triangular *t, int i, int j, int x)
+void setRowMajorUpperTriangular(struct triangular *t, int i, int j, int x)
 {
     int index;
     if (i <= j)
     {
         index = (t->n * (i - 1)) - ((i - 2) * (i - 1) / 2) + (j - i);
+        t->A[index] = x;
+    }
+}
+
+void setColomnMajorUpperTriangularMatrix(struct triangular *t, int i, int j, int x)
+{
+    int index;
+    if (i <= j)
+    {
+        index = (j * (j - 1) / 2) + (i - 1);
         t->A[index] = x;
     }
 }
@@ -30,7 +40,10 @@ void display(struct triangular t)
             }
             else
             {
-                index = (t.n * (i - 1)) - ((i - 2) * (i - 1) / 2) + (j - i);
+                // row major
+                //index = (t.n * (i - 1)) - ((i - 2) * (i - 1) / 2) + (j - i);
+                // colomn major
+                index = (j * (j - 1) / 2) + (i - 1);
                 printf("%d ", t.A[index]);
             }
         }
@@ -55,7 +68,8 @@ int main()
             scanf("%d", &x);
             if (i <= j)
             {
-                setRowMajonUpperTriangular(&m, i, j, x);
+                 //setRowMajorUpperTriangular(&m, i, j, x);
+                 setColomnMajorUpperTriangularMatrix(&m, i, j, x);
             }
         }
     }
