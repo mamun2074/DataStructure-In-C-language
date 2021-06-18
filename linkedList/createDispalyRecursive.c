@@ -58,6 +58,31 @@ int sumOfNodeValue(struct Node *p)
     return total;
 }
 
+int countingNodeRecursive(struct Node *p)
+{
+    if (p == 0)
+    {
+        /* code */
+        return 0;
+    }
+    else
+    {
+        return countingNodeRecursive(p->next) + 1;
+    }
+}
+int sumOfNodeValuesRecursive(struct Node *p)
+{
+    if (p == NULL)
+    {
+        /* code */
+        return 0;
+    }
+    else
+    {
+        return sumOfNodeValuesRecursive(p->next) + p->data;
+    }
+}
+
 int main()
 {
     struct Node *head, *tail, *temp;
@@ -80,7 +105,9 @@ int main()
 
     displayRecursive(head);
     printf("\nNumber of nodes: %d \n", countingNode(head));
+    printf("\nNumber of nodes: %d \n", countingNodeRecursive(head));
     printf("Total sum: %d", sumOfNodeValue(head));
+    printf("Total sum: %d", sumOfNodeValuesRecursive(head));
 
     return 0;
 }
