@@ -35,6 +35,29 @@ void displayRecursiveDesc(struct Node *p)
     }
 }
 
+int countingNode(struct Node *p)
+{
+    int nn = 0;
+    while (p != NULL)
+    {
+        /* code */
+        nn++;
+        p = p->next;
+    }
+    return nn;
+}
+int sumOfNodeValue(struct Node *p)
+{
+    int total = 0;
+    while (p != NULL)
+    {
+        /* code */
+        total += p->data;
+        p = p->next;
+    }
+    return total;
+}
+
 int main()
 {
     struct Node *head, *tail, *temp;
@@ -56,8 +79,8 @@ int main()
     }
 
     displayRecursive(head);
-    printf("\n");
-    displayRecursiveDesc(head);
+    printf("\nNumber of nodes: %d \n", countingNode(head));
+    printf("Total sum: %d", sumOfNodeValue(head));
 
     return 0;
 }
