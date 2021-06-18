@@ -105,9 +105,9 @@ int main()
 
     displayRecursive(head);
     printf("\nNumber of nodes: %d \n", countingNode(head));
-    printf("\nNumber of nodes: %d \n", countingNodeRecursive(head));
-    printf("Total sum: %d", sumOfNodeValue(head));
-    printf("Total sum: %d", sumOfNodeValuesRecursive(head));
+    printf("\nNumber of nodes Recursive: %d \n", countingNodeRecursive(head));
+    printf("\nTotal sum: %d\n", sumOfNodeValue(head));
+    printf("\nTotal sum recursive: %d\n", sumOfNodeValuesRecursive(head));
 
     return 0;
 }
