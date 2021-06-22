@@ -112,10 +112,25 @@ int findMaxRecursive(struct Node *p)
     }
 }
 
+struct Node *SearchNode(struct Node *p, int x)
+{
+    while (p != NULL)
+    {
+        /* code */
+        if (p->data == x)
+        {
+            /* code */
+            return p;
+        }
+        p = p->next;
+    }
+    return NULL;
+}
+
 int main()
 {
     struct Node *head, *tail, *temp;
-    int i, x, n;
+    int i, x, n, data;
     printf("Number of nodes\n");
     scanf("%d", &n);
 
@@ -141,6 +156,20 @@ int main()
     //printf("\nFind max: %d", findMax(head));
 
     printf("\nFind max: %d", findMaxRecursive(head));
+
+    printf("Enter searching element \n");
+    scanf("%d", &data);
+
+    temp = SearchNode(head, data);
+
+    if (temp)
+    {
+        /* code */
+        printf("Searching data is: %d\n", temp->data);
+    }else{
+        printf("Not found\n");
+    }
+    
 
     return 0;
 }
