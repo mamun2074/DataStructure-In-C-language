@@ -127,6 +127,32 @@ struct Node *SearchNode(struct Node *p, int x)
     return NULL;
 }
 
+void insertNewNode(struct Node *p, int pos, int data)
+{
+    struct Node *temp, *newNode;
+    int i;
+    temp = p;
+    newNode = createNode(data);
+    if (pos == 0)
+    {
+        /* code */
+        newNode->next = temp;
+        temp = newNode;
+    }
+    else if (pos > 0)
+    {
+        for (i = 0; i < pos - 1 && temp; i++)
+        {
+            temp = temp->next;
+        }
+        if (temp)
+        {
+            newNode->next = temp->next;
+            temp->next = newNode;
+        }
+    }
+}
+
 int main()
 {
     struct Node *head, *tail, *temp;
@@ -148,28 +174,35 @@ int main()
     }
 
     displayRecursive(head);
-    printf("\nNumber of nodes: %d \n", countingNode(head));
+    //printf("\nNumber of nodes: %d \n", countingNode(head));
     //printf("\nNumber of nodes Recursive: %d \n", countingNodeRecursive(head));
-    printf("\nTotal sum: %d\n", sumOfNodeValue(head));
+    //printf("\nTotal sum: %d\n", sumOfNodeValue(head));
     //printf("\nTotal sum recursive: %d\n", sumOfNodeValuesRecursive(head));
 
     //printf("\nFind max: %d", findMax(head));
 
-    printf("\nFind max: %d", findMaxRecursive(head));
+    //printf("\nFind max: %d", findMaxRecursive(head));
 
-    printf("Enter searching element \n");
-    scanf("%d", &data);
+    // printf("Enter searching element \n");
+    // scanf("%d", &data);
 
-    temp = SearchNode(head, data);
+    // temp = SearchNode(head, data);
 
-    if (temp)
-    {
-        /* code */
-        printf("Searching data is: %d\n", temp->data);
-    }else{
-        printf("Not found\n");
-    }
-    
+    // if (temp)
+    // {
+    //     /* code */
+    //     printf("Searching data is: %d\n", temp->data);
+    // }
+    // else
+    // {
+    //     printf("Not found\n");
+    // }
+
+    insertNewNode(head, 0, 800);
+
+    printf("\n");
+
+    displayRecursive(head);
 
     return 0;
 }
