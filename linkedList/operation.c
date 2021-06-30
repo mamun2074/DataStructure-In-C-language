@@ -86,6 +86,23 @@ int nodePop()
     return data;
 }
 
+int nodeShift()
+{
+    struct Node *nextNode;
+    int data;
+    if (head == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        nextNode = head->next;
+    }
+    data = head->data;
+    head = nextNode;
+    return data;
+}
+
 void displayLinkList(struct Node *p)
 {
     while (p != NULL)
@@ -126,6 +143,9 @@ int main()
     displayLinkList(head);
     printf("%d \n", nodePop(head));
     displayLinkList(head);
+    printf("%d \n", nodeShift(head));
+    displayLinkList(head);
+
 
     return 0;
 }
