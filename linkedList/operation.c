@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct Node *createNode(int x);
+void insertNodeEndIntoLinkedList(struct Node *newNode);
+void insertNode(struct Node *newNode, int pos);
+int deleteNodeAnyPosition(int pos);
+int nodeShift();
+void displayLinkList(struct Node *p);
+
 struct Node
 {
     int data;
@@ -56,6 +63,39 @@ void insertNode(struct Node *newNode, int pos)
     else if (head == NULL)
     {
         head = newNode;
+    }
+}
+int deleteNodeAnyPosition(int pos)
+{
+    struct Node *prevNode, *currentNode, *nextNode;
+    temp = head;
+    int data, i;
+    if (head != NULL && pos == 0)
+    {
+        return nodeShift();
+    }
+    else if (pos > 0)
+    {
+        for (i = 0; i < pos && temp != NULL; i++)
+        {
+            currentNode = temp;
+            nextNode = currentNode->next;
+
+            temp = temp->next;
+        }
+        if (nextNode != NULL)
+        {
+            currentNode->next = nextNode->next;
+            return nextNode->data;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+    else
+    {
+        return -1;
     }
 }
 
@@ -137,15 +177,16 @@ int main()
 
     //insertNode(createNode(400), i);
 
-    printf("%d \n", nodePop(head));
+    //printf("%d \n", nodePop(head));
 
     //printf("%d \n", nodePop());
+    // displayLinkList(head);
+    // printf("%d \n", nodePop(head));
+    // displayLinkList(head);
+    // printf("%d \n", nodeShift(head));
     displayLinkList(head);
-    printf("%d \n", nodePop(head));
+    printf("%d \n", deleteNodeAnyPosition(0));
     displayLinkList(head);
-    printf("%d \n", nodeShift(head));
-    displayLinkList(head);
-
 
     return 0;
 }
