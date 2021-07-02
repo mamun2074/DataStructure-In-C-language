@@ -119,6 +119,19 @@ void reverseLinkList()
     head = mid;
 }
 
+void reverseLinkedListRecursive(struct Node *back, struct Node *current)
+{
+    if (current != NULL)
+    {
+        reverseLinkedListRecursive(current, current->next);
+        current->next = back;
+    }
+    else
+    {
+        head = back;
+    }
+}
+
 void display()
 {
     temp = head;
@@ -156,7 +169,9 @@ int main()
     display();
 
     //removeDuplicateNode();
-    reverseLinkList();
+    // reverseLinkList();
+    reverseLinkedListRecursive(NULL, head);
+    
     display();
 
     return 0;
