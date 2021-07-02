@@ -102,6 +102,23 @@ void removeDuplicateNode()
     }
 }
 
+// Sliding method
+void reverseLinkList()
+{
+    struct Node *first, *mid, *current;
+    current = head;
+    first = mid = NULL;
+    while (current != NULL)
+    {
+        first = mid;
+        mid = current;
+        current = current->next;
+
+        mid->next = first;
+    }
+    head = mid;
+}
+
 void display()
 {
     temp = head;
@@ -138,7 +155,8 @@ int main()
 
     display();
 
-    removeDuplicateNode();
+    //removeDuplicateNode();
+    reverseLinkList();
     display();
 
     return 0;
