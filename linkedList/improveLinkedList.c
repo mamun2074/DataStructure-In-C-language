@@ -26,6 +26,61 @@ void insertNodeToLast(struct Node *newNode)
         tail = newNode;
     }
 }
+void insertNodeToFirst(struct Node *newNode)
+{
+    if (head != NULL)
+    {
+        newNode->next = head;
+        head = newNode;
+    }
+}
+
+int isSortedNode()
+{
+    struct Node *currentNode;
+    currentNode = head;
+    int data = -32768;
+    while (currentNode != NULL)
+    {
+        if (data < currentNode->data)
+        {
+            data = currentNode->data;
+        }
+        else
+        {
+            return 0;
+        }
+        currentNode = currentNode->next;
+    }
+
+    return 1;
+}
+
+void insertNodeIntoSortedNode(struct Node *newNode)
+{
+    struct Node *currentNode, *prevNode;
+    prevNode = currentNode = head;
+    if (currentNode != NULL && newNode->data < currentNode->data)
+    {
+        newNode->next = head->next;
+        head = newNode;
+    }
+    else
+    {
+
+        while (currentNode != NULL)
+        {
+            if (currentNode->data >= newNode->data)
+            {
+                newNode->next = prevNode->next;
+                prevNode->next = newNode;
+                break;
+            }
+            prevNode = currentNode;
+            currentNode = currentNode->next;
+        }
+    }
+}
 
 void display()
 {
@@ -54,7 +109,13 @@ int main()
 
     display();
 
-    insertNodeToLast(createNode(400));
+    //insertNodeToFirst(createNode(400));
+
+    //printf("%d \n", isSortedNode());
+
+    insertNodeIntoSortedNode(createNode(30));
+    insertNodeIntoSortedNode(createNode(30));
+
     display();
 
     return 0;
