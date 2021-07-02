@@ -81,6 +81,26 @@ void insertNodeIntoSortedNode(struct Node *newNode)
         }
     }
 }
+void removeDuplicateNode()
+{
+    struct Node *currentNode, *nextNode;
+    currentNode = head;
+    nextNode = head->next;
+
+    while (nextNode != NULL)
+    {
+        if (currentNode->data != nextNode->data)
+        {
+            currentNode = nextNode;
+            nextNode = currentNode->next;
+        }
+        else
+        {
+            currentNode->next = nextNode->next;
+            nextNode = nextNode->next;
+        }
+    }
+}
 
 void display()
 {
@@ -116,6 +136,9 @@ int main()
     insertNodeIntoSortedNode(createNode(30));
     insertNodeIntoSortedNode(createNode(30));
 
+    display();
+
+    removeDuplicateNode();
     display();
 
     return 0;
